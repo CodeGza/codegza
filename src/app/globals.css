@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* 🌗 Variables */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-primary: "Satoshi";
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* 🧠 Base */
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* 🌊 Ripple Effect */
+@keyframes ripple-grow {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+
+  70% {
+    transform: scale(15);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(25);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple-grow 0.7s ease-out forwards;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s linear infinite;
+}
+
+@keyframes arrowBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+    /* baja un poco */
+  }
+}
+
+.animate-arrowBounce {
+  animation: arrowBounce 2s ease-in-out infinite;
+}
+
