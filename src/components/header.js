@@ -9,6 +9,7 @@ export default function Header() {
     { name: "Inicio", href: "#inicio" },
     { name: "Por qué tener una web", href: "#why-website" },
     { name: "Proceso", href: "#proceso" },
+    { name: "Planes", href: "#planes" },
     { name: "Proyectos", href: "#portfolio" },
     { name: "Contacto", href: "#contacto" },
   ];

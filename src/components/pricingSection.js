@@ -227,7 +227,7 @@ export default function PricingSection() {
                   </div>
 
                   {/* Features */}
-                  <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                  <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 flex-grow">
                     {plan.features.map((feature, i) => (
                       <div key={i} className="flex items-start gap-2 sm:gap-3">
                         <Check
