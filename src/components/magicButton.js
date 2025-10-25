@@ -33,8 +33,9 @@ export default function MagicButton() {
   };
 
   return (
-    <button
+    <a
       ref={btnRef}
+      href="#portfolio"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={(e) => {
         setHovering(false);
@@ -44,7 +45,7 @@ export default function MagicButton() {
       onClick={handleClick}
       className="relative overflow-hidden px-7 py-3 rounded-xl font-semibold 
                  text-[#fde5ab] border border-transparent shadow-md select-none
-                 transition-all duration-300 active:scale-[0.98]"
+                 transition-all duration-300 active:scale-[0.98] inline-block"
       style={{
         background: hovering
           ? `radial-gradient(circle at var(--x, 50%) var(--y, 50%), #fde5ab33, #121212 80%)`
@@ -67,6 +68,6 @@ export default function MagicButton() {
       ></span>
 
       Ver proyectos
-    </button>
+    </a>
   );
 }

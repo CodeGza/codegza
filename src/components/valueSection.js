@@ -1,56 +1,77 @@
 "use client";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Rocket, Diamond, Smartphone, Zap, Wrench, Wallet } from "lucide-react";
 
 export default function ValueSection() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(1024);
+
+  // ✅ Manejamos el tamaño de la ventana de forma segura (solo en cliente)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      handleResize(); // inicializa
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
 
   const benefits = [
     {
       icon: Rocket,
       title: "Entrega Rápida",
-      description: "Desarrollamos con procesos ágiles para que tu sitio esté online en menos de dos semanas, sin comprometer calidad ni detalle.",
-      highlight: "7-14 días hábiles según el alcance del proyecto"
+      description:
+        "Desarrollamos con procesos ágiles para que tu sitio esté online en menos de dos semanas, sin comprometer calidad ni detalle.",
+      highlight: "7-14 días hábiles según el alcance del proyecto",
     },
     {
       icon: Diamond,
       title: "Diseño Premium",
-      description: "Tu marca, con presencia profesional. Creamos diseños modernos, coherentes y memorables que reflejan la esencia de tu negocio.",
-      highlight: "100% personalizado"
+      description:
+        "Tu marca, con presencia profesional. Creamos diseños modernos, coherentes y memorables que reflejan la esencia de tu negocio.",
+      highlight: "100% personalizado",
     },
     {
       icon: Smartphone,
       title: "Responsive Total",
-      description: "Perfecta en cualquier dispositivo. Tu web se adapta automáticamente a celulares, tablets y escritorio para brindar una experiencia impecable.",
-      highlight: "Todas las pantallas"
+      description:
+        "Perfecta en cualquier dispositivo. Tu web se adapta automáticamente a celulares, tablets y escritorio para brindar una experiencia impecable.",
+      highlight: "Todas las pantallas",
     },
     {
       icon: Zap,
       title: "Carga Optimizada",
-      description: "Velocidad que marca la diferencia. Sitios rápidos, livianos y optimizados para SEO y experiencia de usuario.",
-      highlight: "<5 segundos"
+      description:
+        "Velocidad que marca la diferencia. Sitios rápidos, livianos y optimizados para SEO y experiencia de usuario.",
+      highlight: "<5 segundos",
     },
     {
       icon: Wrench,
       title: "Garantía de Funcionamiento",
-      description: "Acompañamiento post-lanzamiento. Incluye soporte inicial y ajustes menores para asegurar que todo funcione como debe.",
-      highlight: "Soporte incluido"
+      description:
+        "Acompañamiento post-lanzamiento. Incluye soporte inicial y ajustes menores para asegurar que todo funcione como debe.",
+      highlight: "Soporte incluido",
     },
     {
       icon: Wallet,
       title: "Precio Transparente",
-      description: "Sin sorpresas ni costos ocultos. Desde el primer día sabés exactamente qué incluye cada paquete y cuánto vas a invertir.",
-      highlight: "Precio claro"
-    }
+      description:
+        "Sin sorpresas ni costos ocultos. Desde el primer día sabés exactamente qué incluye cada paquete y cuánto vas a invertir.",
+      highlight: "Precio claro",
+    },
   ];
 
+  // ✅ Verificación de window antes de abrir WhatsApp
   const handleRequestQuote = () => {
-    const message = "Hola Codegza!%0A%0AQuiero solicitar una cotizacion gratuita para mi proyecto web.%0A%0APor favor, necesito informacion sobre:%0A- Precio estimado para mi tipo de proyecto%0A- Tiempo de desarrollo%0A- Que incluye el servicio%0A- Proceso de trabajo%0A%0AInformacion de mi proyecto:%0A- Tipo de sitio que necesito:%0A- Funcionalidades que busco:%0A- Plazo que manejo:%0A%0AMuchas gracias por su atencion!";
+    const message =
+      "Hola Codegza!%0A%0AQuiero solicitar una cotizacion gratuita para mi proyecto web.%0A%0APor favor, necesito informacion sobre:%0A- Precio estimado para mi tipo de proyecto%0A- Tiempo de desarrollo%0A- Que incluye el servicio%0A- Proceso de trabajo%0A%0AInformacion de mi proyecto:%0A- Tipo de sitio que necesito:%0A- Funcionalidades que busco:%0A- Plazo que manejo:%0A%0AMuchas gracias por su atencion!";
     const whatsappUrl = `https://wa.me/59895436987?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    if (typeof window !== "undefined") {
+      window.open(whatsappUrl, "_blank");
+    }
   };
 
   return (
@@ -92,16 +113,16 @@ export default function ValueSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           {benefits.map((benefit, index) => {
             const IconComponent = benefit.icon;
-            
+
             return (
               <motion.div
                 key={index}
                 initial={{ y: 50, opacity: 0 }}
                 animate={inView ? { y: 0, opacity: 1 } : {}}
-                transition={{ 
-                  delay: 0.1 * index, 
+                transition={{
+                  delay: 0.1 * index,
                   duration: 0.5,
-                  ease: "easeOut" 
+                  ease: "easeOut",
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -110,28 +131,34 @@ export default function ValueSection() {
                 {/* Resplandor dorado de fondo */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ 
+                  animate={{
                     opacity: hoveredIndex === index ? 0.4 : 0,
-                    scale: hoveredIndex === index ? 1 : 0.8
+                    scale: hoveredIndex === index ? 1 : 0.8,
                   }}
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 rounded-xl sm:rounded-2xl pointer-events-none"
                   style={{
-                    background: 'radial-gradient(circle at center, rgba(207,174,1,0.3) 0%, transparent 70%)',
-                    filter: 'blur(20px)',
+                    background:
+                      "radial-gradient(circle at center, rgba(207,174,1,0.3) 0%, transparent 70%)",
+                    filter: "blur(20px)",
                   }}
                 />
 
                 <div
                   className="relative h-full p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl transition-all duration-500 cursor-pointer"
                   style={{
-                    background: hoveredIndex === index 
-                      ? 'radial-gradient(circle at top left, rgba(207,174,1,0.08) 0%, transparent 50%), linear-gradient(to bottom right, #1a1a1a, #0f0f0f)'
-                      : 'linear-gradient(to bottom right, #1a1a1a, #0f0f0f)',
-                    boxShadow: hoveredIndex === index
-                      ? '0 0 12px 2px rgba(0,0,0,0.8), inset 0 0 25px 3px rgba(0,0,0,0.3), 3px 3px 4px -1px #cfae01, -4px -3px 4px -2px #e2c057'
-                      : '0 0 8px 2px #000, inset 0 0 20px 3px rgba(0,0,0,0), 2px 2px 2px -1px #6b5d2e, -3px -2px 2px -2px #7a6b3a',
-                    transform: hoveredIndex === index ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)'
+                    background:
+                      hoveredIndex === index
+                        ? "radial-gradient(circle at top left, rgba(207,174,1,0.08) 0%, transparent 50%), linear-gradient(to bottom right, #1a1a1a, #0f0f0f)"
+                        : "linear-gradient(to bottom right, #1a1a1a, #0f0f0f)",
+                    boxShadow:
+                      hoveredIndex === index
+                        ? "0 0 12px 2px rgba(0,0,0,0.8), inset 0 0 25px 3px rgba(0,0,0,0.3), 3px 3px 4px -1px #cfae01, -4px -3px 4px -2px #e2c057"
+                        : "0 0 8px 2px #000, inset 0 0 20px 3px rgba(0,0,0,0), 2px 2px 2px -1px #6b5d2e, -3px -2px 2px -2px #7a6b3a",
+                    transform:
+                      hoveredIndex === index
+                        ? "translateY(-8px) scale(1.02)"
+                        : "translateY(0) scale(1)",
                   }}
                 >
                   {/* Borde brillante superior */}
@@ -146,13 +173,20 @@ export default function ValueSection() {
                   <motion.div
                     animate={{
                       scale: hoveredIndex === index ? 1.15 : 1,
-                      rotate: hoveredIndex === index ? [0, -8, 8, 0] : 0
+                      rotate:
+                        hoveredIndex === index ? [0, -8, 8, 0] : 0,
                     }}
                     transition={{ duration: 0.4 }}
                     className="mb-3 sm:mb-4"
                   >
-                    <IconComponent 
-                      size={window.innerWidth < 640 ? 40 : window.innerWidth < 768 ? 48 : 56}
+                    <IconComponent
+                      size={
+                        windowWidth < 640
+                          ? 40
+                          : windowWidth < 768
+                          ? 48
+                          : 56
+                      }
                       color="#cfae01"
                       strokeWidth={1.5}
                     />
@@ -178,24 +212,34 @@ export default function ValueSection() {
                   {/* Brillo en esquina */}
                   <motion.div
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
+                    animate={{
+                      opacity: hoveredIndex === index ? 1 : 0,
+                    }}
                     transition={{ duration: 0.3 }}
                     className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#cfae01]"
                     style={{
-                      boxShadow: '0 0 10px #cfae01, 0 0 20px #cfae01'
+                      boxShadow:
+                        "0 0 10px #cfae01, 0 0 20px #cfae01",
                     }}
                   />
 
                   {/* Partícula brillante central */}
                   <motion.div
                     animate={{
-                      scale: hoveredIndex === index ? [0, 1.5, 0] : 0,
-                      opacity: hoveredIndex === index ? [0, 0.8, 0] : 0
+                      scale:
+                        hoveredIndex === index
+                          ? [0, 1.5, 0]
+                          : 0,
+                      opacity:
+                        hoveredIndex === index
+                          ? [0, 0.8, 0]
+                          : 0,
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 1.5,
-                      repeat: hoveredIndex === index ? Infinity : 0,
-                      repeatDelay: 0.5
+                      repeat:
+                        hoveredIndex === index ? Infinity : 0,
+                      repeatDelay: 0.5,
                     }}
                     className="absolute top-1/2 left-1/2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#cfae01] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                   />

@@ -1,17 +1,29 @@
 "use client";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Smartphone, Zap, MessageCircle, Calendar } from "lucide-react";
 
 export default function ProjectDemoSection() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [isHovered, setIsHovered] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(1024); // ✅ Evita SSR crash
+
+  // ✅ Manejar window.innerWidth de forma segura
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
 
   const demoProject = {
     title: "Barbería Profesional",
     subtitle: "Landing Page Moderna",
-    description: "Una landing page profesional para barberías con sistema de reservas integrado con Google Calendar y WhatsApp, galería de trabajos, descripción de servicios y diseño totalmente responsive.",
+    description:
+      "Una landing page profesional para barberías con sistema de reservas integrado con Google Calendar y WhatsApp, galería de trabajos, descripción de servicios y diseño totalmente responsive.",
     url: "https://barber-landing-muestra.vercel.app/",
     features: [
       { icon: Smartphone, text: "Diseño Adaptativo", detail: "Optimizado para móviles, tablets y escritorio", color: "#cfae01" },
@@ -23,14 +35,18 @@ export default function ProjectDemoSection() {
     metrics: [
       { value: "95+", label: "Performance" },
       { value: "<2s", label: "Carga" },
-      { value: "100%", label: "Responsive" }
-    ]
+      { value: "100%", label: "Responsive" },
+    ],
   };
 
+  // ✅ Proteger uso de window.open
   const handleRequestSite = () => {
-    const message = "Hola Codegza!%0A%0AVisualice el proyecto de demostracion de la Barberia Profesional en su web y me interesa mucho.%0A%0AMe gustaria solicitar un sitio similar para mi negocio:%0A%0A- Nombre de mi negocio:%0A- Tipo de servicio:%0A- Que funcionalidades necesito:%0A%0APor favor, podrian enviarme informacion sobre:%0A- Precio aproximado%0A- Tiempo de desarrollo%0A- Proceso de trabajo%0A%0AMuchas gracias!";
+    const message =
+      "Hola Codegza!%0A%0AVisualice el proyecto de demostracion de la Barberia Profesional en su web y me interesa mucho.%0A%0AMe gustaria solicitar un sitio similar para mi negocio:%0A%0A- Nombre de mi negocio:%0A- Tipo de servicio:%0A- Que funcionalidades necesito:%0A%0APor favor, podrian enviarme informacion sobre:%0A- Precio aproximado%0A- Tiempo de desarrollo%0A- Proceso de trabajo%0A%0AMuchas gracias!";
     const whatsappUrl = `https://wa.me/59895436987?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    if (typeof window !== "undefined") {
+      window.open(whatsappUrl, "_blank");
+    }
   };
 
   return (
@@ -49,11 +65,12 @@ export default function ProjectDemoSection() {
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[700px] md:w-[800px] h-[600px] sm:h-[700px] md:h-[800px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(207, 174, 1, 0.15) 0%, transparent 70%)',
+            background:
+              "radial-gradient(circle, rgba(207, 174, 1, 0.15) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -94,13 +111,12 @@ export default function ProjectDemoSection() {
           transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-6xl mx-auto"
         >
-          {/* Preview del proyecto con efecto de mockup de navegador */}
           <div
             className="relative rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-500"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-          > 
-            {/* Barra de navegador falsa - Oculta en móvil */}
+          >
+            {/* Barra navegador falsa */}
             <div className="hidden sm:flex bg-[#1a1a1a] px-3 sm:px-4 py-2 sm:py-3 items-center gap-2 border-b border-gray-700">
               <div className="flex gap-1.5 sm:gap-2">
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500" />
@@ -109,15 +125,20 @@ export default function ProjectDemoSection() {
               </div>
               <div className="flex-1 ml-2 sm:ml-4 bg-[#0f0f0f] rounded-lg px-3 sm:px-4 py-1 sm:py-1.5 flex items-center gap-2">
                 <svg className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
                 </svg>
                 <span className="text-gray-400 text-xs sm:text-sm truncate">{demoProject.url}</span>
               </div>
             </div>
 
-            {/* Frame del sitio - Imagen o iframe */}
+            {/* Imagen del demo */}
             <div className="relative bg-gradient-to-br from-[#cfae01]/10 to-[#0a0a0a] aspect-video flex items-center justify-center overflow-hidden group">
-              {/* Overlay con efecto hover */}
+              {/* Overlay hover */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isHovered ? 1 : 0 }}
@@ -153,37 +174,25 @@ export default function ProjectDemoSection() {
                 </div>
               </motion.div>
 
-              {/* Preview estático */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <img 
-                  src="./capturaLandingBarberia.png" 
-                  alt="Demo Barbería Profesional" 
-                  className="w-full h-full object-cover pointer-events-none select-none" 
-                />
-              </div>
+              <img
+                src="./capturaLandingBarberia.png"
+                alt="Demo Barbería Profesional"
+                className="w-full h-full object-cover pointer-events-none select-none"
+              />
             </div>
           </div>
 
-          {/* Información del proyecto debajo */}
+          {/* Información del proyecto */}
           <div className="mt-8 sm:mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
-            {/* Columna izquierda - Descripción */}
-            <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              animate={inView ? { x: 0, opacity: 1 } : {}}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#ffe7b4] mb-3 sm:mb-4">
-                {demoProject.title}
-              </h3>
-              <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6">
-                {demoProject.description}
-              </p>
+            {/* Izquierda */}
+            <motion.div initial={{ x: -50, opacity: 0 }} animate={inView ? { x: 0, opacity: 1 } : {}} transition={{ delay: 0.6, duration: 0.6 }}>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#ffe7b4] mb-3 sm:mb-4">{demoProject.title}</h3>
+              <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6">{demoProject.description}</p>
 
-              {/* Features con iconos de Lucide */}
+              {/* Features */}
               <div className="space-y-2.5 sm:space-y-3 mb-4 sm:mb-6">
                 {demoProject.features.map((feature, i) => {
                   const IconComponent = feature.icon;
-                  
                   return (
                     <motion.div
                       key={i}
@@ -193,8 +202,8 @@ export default function ProjectDemoSection() {
                       className="flex items-start gap-2 sm:gap-3 group cursor-pointer"
                     >
                       <div className="mt-0.5 flex-shrink-0">
-                        <IconComponent 
-                          size={window.innerWidth < 640 ? 20 : 24}
+                        <IconComponent
+                          size={windowWidth < 640 ? 20 : 24}
                           color={feature.color}
                           strokeWidth={2}
                           className="group-hover:scale-110 transition-transform"
@@ -211,7 +220,7 @@ export default function ProjectDemoSection() {
                 })}
               </div>
 
-              {/* Tech Stack */}
+              {/* Tech stack */}
               <div>
                 <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">Tecnologías utilizadas:</p>
                 <div className="flex flex-wrap gap-2">
@@ -227,14 +236,8 @@ export default function ProjectDemoSection() {
               </div>
             </motion.div>
 
-            {/* Columna derecha - Métricas y CTA */}
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              animate={inView ? { x: 0, opacity: 1 } : {}}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-col justify-between"
-            >
-              {/* Métricas */}
+            {/* Derecha */}
+            <motion.div initial={{ x: 50, opacity: 0 }} animate={inView ? { x: 0, opacity: 1 } : {}} transition={{ delay: 0.6, duration: 0.6 }} className="flex flex-col justify-between">
               <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
                 {demoProject.metrics.map((metric, i) => (
                   <motion.div
@@ -244,21 +247,15 @@ export default function ProjectDemoSection() {
                     transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
                     className="text-center p-2.5 sm:p-3 md:p-4 bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-lg sm:rounded-xl border border-[#cfae01]/20 hover:border-[#cfae01]/50 transition-colors"
                   >
-                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#cfae01] mb-0.5 sm:mb-1 break-words">
-                      {metric.value}
-                    </div>
-                    <div className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs">
-                      {metric.label}
-                    </div>
+                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#cfae01] mb-0.5 sm:mb-1 break-words">{metric.value}</div>
+                    <div className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs">{metric.label}</div>
                   </motion.div>
                 ))}
               </div>
 
-              {/* CTA Box destacado */}
+              {/* CTA */}
               <div className="bg-gradient-to-br from-[#cfae01]/10 to-transparent border border-[#cfae01]/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
-                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
-                  ¿Tu Negocio Necesita Esto?
-                </h4>
+                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">¿Tu Negocio Necesita Esto?</h4>
                 <p className="text-gray-400 text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
                   Codegza puede desarrollar un sitio igual de funcional, adaptado a la identidad y necesidades de tu negocio.
                 </p>
@@ -288,12 +285,7 @@ export default function ProjectDemoSection() {
         </motion.div>
 
         {/* Nota final */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="mt-10 sm:mt-12 md:mt-16 text-center px-4"
-        >
+        <motion.div initial={{ y: 50, opacity: 0 }} animate={inView ? { y: 0, opacity: 1 } : {}} transition={{ delay: 1, duration: 0.6 }} className="mt-10 sm:mt-12 md:mt-16 text-center px-4">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f] border border-[#cfae01]/20 rounded-full">
             <span className="text-[#cfae01] text-lg sm:text-xl md:text-2xl">✨</span>
             <span className="text-gray-400 font-medium text-xs sm:text-sm md:text-base">

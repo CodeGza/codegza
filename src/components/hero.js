@@ -48,12 +48,16 @@ export default function Hero() {
   }, [pos, borrando, indexTexto, textos]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setHideScroll(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  if (typeof window === "undefined") return; // 🚫 Evita ejecutar en SSR
+
+  const handleScroll = () => {
+    setHideScroll(window.scrollY > 20);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   return (
     <section
