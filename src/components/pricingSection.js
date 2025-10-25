@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
-import { Rocket, Briefcase, ShoppingCart, Check, Sparkles } from "lucide-react";
+import { Rocket, Briefcase, ShoppingCart, Check } from "lucide-react";
 
 export default function PricingSection() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
@@ -277,20 +277,30 @@ export default function PricingSection() {
           })}
         </div>
 
-        {/* Banner especial */}
+        {/* Banner especial - MEJORADO PARA RESPONSIVE */}
         <motion.div
           initial={{ y: 50, opacity: 0, scale: 0.95 }}
           animate={inView ? { y: 0, opacity: 1, scale: 1 } : {}}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-4xl mx-auto px-4"
         >
           <div className="relative overflow-hidden rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-[#1a1510] via-[#2a2010] to-[#1a1510] border-2 border-[#cfae01] text-center">
-            <Sparkles size={windowWidth < 640 ? 24 : 32} color="#cfae01" strokeWidth={2} />
-            <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-[#cfae01] mb-2">
+            <motion.h3 
+              animate={{ 
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-[#cfae01] mb-3 sm:mb-4 px-2 leading-tight"
+            >
               Precio de Lanzamiento Exclusivo
-            </h3>
-            <p className="text-sm sm:text-base md:text-lg text-white mb-6">
+            </motion.h3>
+            <p className="text-sm sm:text-base md:text-lg text-white mb-6 sm:mb-8 px-2 leading-relaxed">
               Para los <span className="text-[#cfae01] font-bold">primeros 10 clientes</span> de Codegza.{" "}
+              <br className="hidden sm:inline" />
               <span className="text-[#e2c674] font-semibold">
                 ¡Consultá antes de que suban los precios!
               </span>
@@ -299,7 +309,7 @@ export default function PricingSection() {
               onClick={handleSpecialPriceClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="px-6 sm:px-8 py-3 bg-gradient-to-r from-[#cfae01] to-[#e2c674] text-black font-bold text-sm sm:text-base md:text-lg rounded-full shadow-[0_0_30px_rgba(207,174,1,0.5)]"
+              className="w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 bg-gradient-to-r from-[#cfae01] to-[#e2c674] text-black font-bold text-sm sm:text-base md:text-lg rounded-full shadow-[0_0_30px_rgba(207,174,1,0.5)] transition-all duration-300"
             >
               Solicitar Precio Especial
             </motion.button>
