@@ -1,6 +1,5 @@
 // layout.jsx
 import "./globals.css";
-import { plus_Jakarta_Sans } from "../fonts/fonts";
 
 export const metadata = {
   title: "Codegza",
@@ -9,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={`${plus_Jakarta_Sans.className} scroll-smooth`}>
+    <html lang="es" className="scroll-smooth">
       <body
         className="scroll-smooth min-h-screen text-white bg-[#0a0a0a] overflow-x-hidden overflow-y-auto"
       >
@@ -23,7 +22,7 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* Contenido principal */}
-        <main className="relative z-10 w-full max-w-[1280px] ">
+        <main className="relative z-10 w-full">
           {children}
         </main>
       </body>

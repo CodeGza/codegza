@@ -3,11 +3,16 @@ import Hero from "@/components/hero";
 import WhyWebsiteSection from "@/components/whyWebSite";
 import ValueSection from "@/components/valueSection";
 import ProcessSection from "@/components/processSection";
-import ProjectDemoSection from "@/components/projectDemoSection";
 import TrustBuildingSection from "@/components/trustBuildingSection";
 import PricingSection from "@/components/pricingSection";
 import ContactSection from "@/components/contactSection";
 import Footer from "@/components/footer";
+
+// Nuevas secciones
+import Technologies from "@/components/sections/Technologies";
+import About from "@/components/sections/About";
+import Portfolio from "@/components/sections/Portfolio";
+import FAQ from "@/components/sections/FAQ";
 
 export const metadata = {
   title: "Codegza",
@@ -21,10 +26,13 @@ export default function Home() {
       <Hero />
       <WhyWebsiteSection />
       <ValueSection />
+      <Technologies />
       <ProcessSection />
-      <ProjectDemoSection />
+      <Portfolio />
+      <About />
       <TrustBuildingSection />
       <PricingSection />
+      <FAQ />
       <ContactSection />
       <Footer />
     </main>

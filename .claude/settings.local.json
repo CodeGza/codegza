@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(dir \"C:\\Users\\EQUIPO\\Documents\\Proyectos\\CodeGZA\\codegza\")",
+      "Bash(dir:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm run build:*)",
+      "Bash(pnpm run dev:*)",
+      "Bash(if exist .next rmdir /s /q .next)",
+      "Bash(powershell -Command:*)",
+      "Bash(git checkout:*)",
+      "Bash(git clean:*)",
+      "Bash(if exist \"C:\\Users\\EQUIPO\\Documents\\Proyectos\\CodeGZA\\codegza\\.next\" rmdir /s /q \"C:\\Users\\EQUIPO\\Documents\\Proyectos\\CodeGZA\\codegza\\.next\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
