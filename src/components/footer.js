@@ -61,7 +61,7 @@ export default function Footer() {
   return (
     <footer
       ref={ref}
-      className="relative min-w-[100vw] bg-gradient-to-b from-[#0a0a0a] to-[#000000] text-white border-t border-[#cfae01]/20"
+      className="relative w-full bg-gradient-to-b from-[#0a0a0a] to-[#000000] text-white border-t border-[#cfae01]/20"
     >
       {/* Decoración superior */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#cfae01] to-transparent"></div>

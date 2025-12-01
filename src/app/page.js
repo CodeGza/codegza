@@ -14,10 +14,6 @@ import About from "@/components/sections/About";
 import Portfolio from "@/components/sections/Portfolio";
 import FAQ from "@/components/sections/FAQ";
 
-export const metadata = {
-  title: "Codegza",
-  description: "Diseño y desarrollo web profesional",
-};
 
 export default function Home() {
   return (

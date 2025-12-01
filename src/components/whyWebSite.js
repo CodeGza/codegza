@@ -110,7 +110,7 @@ export default function WhyWebsiteSection() {
     <section
       id="why-website"
       ref={ref}
-      className="relative bg-[#222] text-white overflow-visible min-w-[100vw]"
+      className="relative bg-[#222] text-white overflow-visible w-full"
     >
       <motion.div
         initial={{ x: "-100vw", opacity: 0 }}
@@ -122,7 +122,7 @@ export default function WhyWebsiteSection() {
             transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
           },
         }}
-        className="relative z-30 min-w-[100vw]
+        className="relative z-30 w-full
                    bg-[radial-gradient(circle_at_top_left,rgba(253,229,171,0.08),transparent_40%),linear-gradient(to_bottom,#bf963a,#e2c685)]
                    text-black overflow-hidden"
         style={{

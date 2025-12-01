@@ -1,16 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Globe from '@/components/Globe';
 
+const SUBTITLES = [
+  'Sitios web que convierten visitas en clientes',
+  'Landing pages optimizadas para ventas',
+  'Sistemas de gestión y reservas automáticas',
+  'Soluciones web a medida para tu negocio',
+];
+
 export default function Hero() {
-  const subtitles = [
-    'Sitios web que convierten visitas en clientes',
-    'Landing pages optimizadas para ventas',
-    'Sistemas de gestión y reservas automáticas',
-    'Soluciones web a medida para tu negocio',
-  ];
+  const subtitles = useMemo(() => SUBTITLES, []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');

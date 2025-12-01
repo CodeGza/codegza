@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,10 +26,13 @@ export default function Header() {
         {/* Logo */}
         <div className="transition-all duration-300">
           <a href="#inicio" className="group relative">
-            <img
+            <Image
               src="/logo.png"
               alt="Logo Codegza"
+              width={120}
+              height={48}
               className="h-10 sm:h-12 w-auto drop-shadow-[0_0_2px_rgba(253,229,171,0.4)] group-hover:drop-shadow-[0_0_15px_rgba(253,229,171,0.7)] transition-all duration-300"
+              priority
             />
           </a>
         </div>
