@@ -151,7 +151,6 @@ function Lightbox({ images, initialIndex, onClose }) {
       {/* Image */}
       <div
         className="relative w-[90vw] h-[90vh] touch-pan-x"
-        onClick={(e) => e.stopPropagation()}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -249,7 +248,7 @@ function ProjectCard({ project }) {
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h3>
                   {project.inProduction && (
-                    <span className="px-2 py-0.5 text-xs font-medium bg-green-500/10 text-green-400 rounded-full border border-green-500/20">
+                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-green-500/10 text-green-400 rounded-full border border-green-500/20">
                       En producción
                     </span>
                   )}
@@ -258,23 +257,23 @@ function ProjectCard({ project }) {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4">
                 {project.stats.performance ? (
                   <>
-                    <div className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                      <Gauge className="w-5 h-5 mx-auto text-[#fde5ab] mb-2" />
-                      <div className="text-xl font-bold text-white">{project.stats.performance}</div>
-                      <div className="text-xs text-gray-500">Rendimiento</div>
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                      <Gauge className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
+                      <div className="text-base sm:text-xl font-bold text-white">{project.stats.performance}</div>
+                      <div className="text-[10px] sm:text-xs text-gray-500">Rendimiento</div>
                     </div>
-                    <div className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                      <Zap className="w-5 h-5 mx-auto text-[#fde5ab] mb-2" />
-                      <div className="text-xl font-bold text-white">{project.stats.loadTime}</div>
-                      <div className="text-xs text-gray-500">Carga rápida</div>
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                      <Zap className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
+                      <div className="text-base sm:text-xl font-bold text-white">{project.stats.loadTime}</div>
+                      <div className="text-[10px] sm:text-xs text-gray-500">Carga rápida</div>
                     </div>
-                    <div className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                      <Smartphone className="w-5 h-5 mx-auto text-[#fde5ab] mb-2" />
-                      <div className="text-xl font-bold text-white">{project.stats.responsive}</div>
-                      <div className="text-xs text-gray-500">Responsive</div>
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                      <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
+                      <div className="text-base sm:text-xl font-bold text-white">{project.stats.responsive}</div>
+                      <div className="text-[10px] sm:text-xs text-gray-500">Responsive</div>
                     </div>
                   </>
                 ) : (
