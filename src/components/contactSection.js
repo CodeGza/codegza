@@ -165,7 +165,7 @@ export default function ContactSection() {
     <section
       id="contacto"
       ref={ref}
-      className="relative w-full bg-gradient-to-b from-[#0d0d0d] via-[#111111] to-[#0a0a0a] text-white overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
+      className="scroll-mt-24 relative w-full bg-gradient-to-b from-[#0d0d0d] via-[#111111] to-[#0a0a0a] text-white overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
     >
       {/* Fondo decorativo */}
       <div className="absolute inset-0 opacity-5">

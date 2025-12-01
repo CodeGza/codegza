@@ -328,7 +328,7 @@ function ProjectCard({ project }) {
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-20 md:py-28 px-4 relative">
+    <section id="portfolio" className="scroll-mt-24 py-20 md:py-28 px-4 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#D4AF37]/[0.02] to-transparent pointer-events-none" />
 

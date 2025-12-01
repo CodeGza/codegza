@@ -32,7 +32,7 @@ const values = [
 
 export default function About() {
   return (
-    <section id="sobre-mi" className="py-32 md:py-40 lg:py-48 px-4 relative overflow-hidden bg-gradient-to-b from-[#0f0f0f] via-[#0f0f0f] to-[#1a1208] min-h-screen">
+    <section id="sobre-mi" className="scroll-mt-24 py-32 md:py-40 lg:py-48 px-4 relative overflow-hidden bg-gradient-to-b from-[#0f0f0f] via-[#0f0f0f] to-[#1a1208] min-h-screen">
       {/* Background con luz central */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Luz central */}

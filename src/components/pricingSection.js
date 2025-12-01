@@ -102,7 +102,7 @@ export default function PricingSection() {
     <section
       id="planes"
       ref={ref}
-      className="relative min-w-[100vw] bg-gradient-to-b from-[#1a1208] via-[#0f0f0f] to-[#0a0a0a] text-white overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
+      className="scroll-mt-24 relative w-full bg-gradient-to-b from-[#1a1208] via-[#0f0f0f] to-[#0a0a0a] text-white overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
     >
       {/* Fondo decorativo */}
       <div className="absolute inset-0 opacity-5">
