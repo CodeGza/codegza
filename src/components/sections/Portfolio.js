@@ -248,7 +248,7 @@ function ProjectCard({ project }) {
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h3>
                   {project.inProduction && (
-                    <span className="px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-green-500/10 text-green-400 rounded-full border border-green-500/20">
+                    <span className="px-2.5 py-0.5 text-[10px] sm:text-xs font-medium bg-green-500/10 text-green-400 rounded-full border border-green-500/20 whitespace-nowrap">
                       En producción
                     </span>
                   )}
