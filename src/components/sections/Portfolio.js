@@ -123,12 +123,17 @@ function Lightbox({ images, initialIndex, onClose }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
-      onClick={onClose}
+      onClick={(e) => {
+        // Solo cerrar si se hace click en el fondo, no en la imagen
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
     >
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+        className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10"
       >
         <X className="w-6 h-6 text-white" />
       </button>
@@ -136,30 +141,31 @@ function Lightbox({ images, initialIndex, onClose }) {
       {/* Navigation buttons */}
       <button
         onClick={(e) => { e.stopPropagation(); prevImage(); }}
-        className="absolute left-4 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+        className="absolute left-4 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10"
       >
         <ChevronLeft className="w-8 h-8 text-white" />
       </button>
 
       <button
         onClick={(e) => { e.stopPropagation(); nextImage(); }}
-        className="absolute right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+        className="absolute right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10"
       >
         <ChevronRight className="w-8 h-8 text-white" />
       </button>
 
       {/* Image */}
       <div
-        className="relative w-[90vw] h-[90vh] touch-pan-x"
+        className="relative w-[90vw] h-[90vh]"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
+        onClick={(e) => e.stopPropagation()}
       >
         <Image
           src={images[currentIndex]}
           alt={`Imagen ${currentIndex + 1}`}
           fill
-          className="object-contain pointer-events-none"
+          className="object-contain"
           sizes="90vw"
         />
       </div>

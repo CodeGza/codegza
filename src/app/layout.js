@@ -58,7 +58,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" className="scroll-smooth overflow-x-hidden">
       <head>
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="512x512" />
       </head>
       <body
         className="scroll-smooth min-h-screen text-white bg-[#0a0a0a] overflow-x-hidden overflow-y-auto"
