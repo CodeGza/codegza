@@ -122,13 +122,8 @@ function Lightbox({ images, initialIndex, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
-      onClick={(e) => {
-        // Solo cerrar si se hace click en el fondo, no en la imagen
-        if (e.target === e.currentTarget) {
-          onClose();
-        }
-      }}
+      className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center"
+      onClick={onClose}
     >
       {/* Close button */}
       <button
@@ -138,24 +133,9 @@ function Lightbox({ images, initialIndex, onClose }) {
         <X className="w-6 h-6 text-white" />
       </button>
 
-      {/* Navigation buttons */}
-      <button
-        onClick={(e) => { e.stopPropagation(); prevImage(); }}
-        className="absolute left-4 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10"
-      >
-        <ChevronLeft className="w-8 h-8 text-white" />
-      </button>
-
-      <button
-        onClick={(e) => { e.stopPropagation(); nextImage(); }}
-        className="absolute right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10"
-      >
-        <ChevronRight className="w-8 h-8 text-white" />
-      </button>
-
       {/* Image */}
       <div
-        className="relative w-[90vw] h-[90vh]"
+        className="relative w-[90vw] h-[70vh] md:h-[75vh]"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -170,9 +150,26 @@ function Lightbox({ images, initialIndex, onClose }) {
         />
       </div>
 
-      {/* Counter */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/10 text-white text-sm">
-        {currentIndex + 1} / {images.length}
+      {/* Navigation buttons - Debajo de la imagen */}
+      <div className="flex items-center gap-4 mt-6 z-10">
+        <button
+          onClick={(e) => { e.stopPropagation(); prevImage(); }}
+          className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+        >
+          <ChevronLeft className="w-8 h-8 text-white" />
+        </button>
+
+        {/* Counter */}
+        <div className="px-4 py-2 rounded-full bg-white/10 text-white text-sm">
+          {currentIndex + 1} / {images.length}
+        </div>
+
+        <button
+          onClick={(e) => { e.stopPropagation(); nextImage(); }}
+          className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+        >
+          <ChevronRight className="w-8 h-8 text-white" />
+        </button>
       </div>
     </motion.div>
   );
