@@ -1,70 +1,62 @@
 "use client";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useState, useEffect } from "react";
-import { Rocket, Diamond, Smartphone, Zap, Wrench, Wallet } from "lucide-react";
+import { Diamond, Smartphone, Zap, MessageSquare, FileCheck, Clock, Wrench, Handshake } from "lucide-react";
 
 export default function ValueSection() {
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [windowWidth, setWindowWidth] = useState(1024);
-
-  // ✅ Manejamos el tamaño de la ventana de forma segura (solo en cliente)
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => setWindowWidth(window.innerWidth);
-      handleResize(); // inicializa
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, []);
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
 
   const benefits = [
-    {
-      icon: Rocket,
-      title: "Entrega Rápida",
-      description:
-        "Desarrollamos con procesos ágiles para que tu sitio esté online en menos de dos semanas, sin comprometer calidad ni detalle.",
-      highlight: "7-14 días hábiles según el alcance del proyecto",
-    },
     {
       icon: Diamond,
       title: "Diseño Premium",
       description:
         "Tu marca, con presencia profesional. Creamos diseños modernos, coherentes y memorables que reflejan la esencia de tu negocio.",
-      highlight: "100% personalizado",
     },
     {
       icon: Smartphone,
       title: "Responsive Total",
       description:
         "Perfecta en cualquier dispositivo. Tu web se adapta automáticamente a celulares, tablets y escritorio para brindar una experiencia impecable.",
-      highlight: "Todas las pantallas",
     },
     {
       icon: Zap,
       title: "Carga Optimizada",
       description:
-        "Velocidad que marca la diferencia. Sitios rápidos, livianos y optimizados para SEO y experiencia de usuario.",
-      highlight: "<5 segundos",
+        "Cada web se entrega lista para cargar rápido y optimizada para SEO. Velocidad y rendimiento garantizados.",
+    },
+    {
+      icon: MessageSquare,
+      title: "Comunicación Clara",
+      description:
+        "Durante todo el proyecto, sabés en qué etapa estamos y qué se está trabajando. Transparencia total, sin sorpresas.",
+    },
+    {
+      icon: FileCheck,
+      title: "Presupuesto Cerrado",
+      description:
+        "El precio se define antes de comenzar y se mantiene hasta la entrega final. Sin costos ocultos ni cambios de último momento.",
+    },
+    {
+      icon: Clock,
+      title: "Tiempos Definidos",
+      description:
+        "Establezco un plazo estimado realista según la complejidad del proyecto y me comprometo a cumplirlo.",
     },
     {
       icon: Wrench,
-      title: "Garantía de Funcionamiento",
+      title: "Soporte Post-Lanzamiento",
       description:
-        "Acompañamiento post-lanzamiento. Incluye soporte inicial y ajustes menores para asegurar que todo funcione como debe.",
-      highlight: "Soporte incluido",
+        "Durante las primeras semanas después de la entrega, ofrezco ayuda para resolver dudas o hacer pequeños ajustes.",
     },
     {
-      icon: Wallet,
-      title: "Precio Transparente",
+      icon: Handshake,
+      title: "Trato Personalizado",
       description:
-        "Sin sorpresas ni costos ocultos. Desde el primer día sabés exactamente qué incluye cada paquete y cuánto vas a invertir.",
-      highlight: "Precio claro",
+        "Atención directa, sin intermediarios. Me enfoco en tus objetivos reales para lograr el mejor resultado.",
     },
   ];
 
-  // ✅ Verificación de window antes de abrir WhatsApp
   const handleRequestQuote = () => {
     const message =
       "Hola Codegza!%0A%0AQuiero solicitar una cotizacion gratuita para mi proyecto web.%0A%0APor favor, necesito informacion sobre:%0A- Precio estimado para mi tipo de proyecto%0A- Tiempo de desarrollo%0A- Que incluye el servicio%0A- Proceso de trabajo%0A%0AInformacion de mi proyecto:%0A- Tipo de sitio que necesito:%0A- Funcionalidades que busco:%0A- Plazo que manejo:%0A%0AMuchas gracias por su atencion!";
@@ -78,171 +70,66 @@ export default function ValueSection() {
     <section
       id="value-section"
       ref={ref}
-      className="relative min-w-[100vw] bg-gradient-to-b from-[#222] to-[#0f0f0f] text-white overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
+      className="relative min-w-[100vw] bg-[#222] text-white overflow-hidden py-20 md:py-32 lg:py-40"
+      style={{
+        background: 'linear-gradient(to bottom, #222 0%, #222 20%, #0f0f0f 100%)'
+      }}
     >
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-8 sm:pt-10 md:pt-12">
+      {/* Fondo decorativo */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-40 left-10 w-64 h-64 bg-[#fde5ab] rounded-full blur-[100px] opacity-10" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#bfa86a] rounded-full blur-[120px] opacity-10" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Encabezado */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-10 sm:mb-12 md:mb-16"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16 md:mb-24"
         >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={inView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#cfae01]/10 border border-[#cfae01]/30 rounded-full"
-          >
-            <span className="text-[#cfae01] font-semibold text-xs sm:text-sm tracking-wide">
-              ¿POR QUÉ ELEGIRNOS?
-            </span>
-          </motion.div>
-
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6 px-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             <span className="text-white">Lo que nos hace </span>
             <span className="text-[#e2c674]">diferentes</span>
           </h2>
-
-          <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto px-4">
-            Llevá tu negocio online con una web profesional, diseñada para vender y generar confianza desde el primer clic.
+          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+            Mi compromiso con cada proyecto va más allá del código. Esto es lo que garantizo en cada trabajo:
           </p>
         </motion.div>
 
-        {/* Grid de beneficios */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-          {benefits.map((benefit, index) => {
+        {/* Grid 3 columnas en desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-8 max-w-7xl mx-auto">
+          {benefits.map((benefit, i) => {
             const IconComponent = benefit.icon;
 
             return (
               <motion.div
-                key={index}
-                initial={{ y: 50, opacity: 0 }}
+                key={i}
+                initial={{ y: 40, opacity: 0 }}
                 animate={inView ? { y: 0, opacity: 1 } : {}}
-                transition={{
-                  delay: 0.1 * index,
-                  duration: 0.5,
-                  ease: "easeOut",
-                }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="relative group"
+                transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+                className="flex items-start gap-5 md:gap-6"
               >
-                {/* Resplandor dorado de fondo */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{
-                    opacity: hoveredIndex === index ? 0.4 : 0,
-                    scale: hoveredIndex === index ? 1 : 0.8,
-                  }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute inset-0 rounded-xl sm:rounded-2xl pointer-events-none"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(207,174,1,0.3) 0%, transparent 70%)",
-                    filter: "blur(20px)",
-                  }}
-                />
-
-                <div
-                  className="relative h-full p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl transition-all duration-500 cursor-pointer"
-                  style={{
-                    background:
-                      hoveredIndex === index
-                        ? "radial-gradient(circle at top left, rgba(207,174,1,0.08) 0%, transparent 50%), linear-gradient(to bottom right, #1a1a1a, #0f0f0f)"
-                        : "linear-gradient(to bottom right, #1a1a1a, #0f0f0f)",
-                    boxShadow:
-                      hoveredIndex === index
-                        ? "0 0 12px 2px rgba(0,0,0,0.8), inset 0 0 25px 3px rgba(0,0,0,0.3), 3px 3px 4px -1px #cfae01, -4px -3px 4px -2px #e2c057"
-                        : "0 0 8px 2px #000, inset 0 0 20px 3px rgba(0,0,0,0), 2px 2px 2px -1px #6b5d2e, -3px -2px 2px -2px #7a6b3a",
-                    transform:
-                      hoveredIndex === index
-                        ? "translateY(-8px) scale(1.02)"
-                        : "translateY(0) scale(1)",
-                  }}
-                >
-                  {/* Borde brillante superior */}
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: hoveredIndex === index ? 1 : 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#cfae01] to-transparent origin-center"
-                  />
-
-                  {/* Icono de Lucide */}
-                  <motion.div
-                    animate={{
-                      scale: hoveredIndex === index ? 1.15 : 1,
-                      rotate:
-                        hoveredIndex === index ? [0, -8, 8, 0] : 0,
-                    }}
-                    transition={{ duration: 0.4 }}
-                    className="mb-3 sm:mb-4"
-                  >
+                {/* Icono con fondo negro y borde dorado */}
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#2d2d2d] border-2 border-[#fde5ab] flex items-center justify-center">
                     <IconComponent
-                      size={
-                        windowWidth < 640
-                          ? 40
-                          : windowWidth < 768
-                          ? 48
-                          : 56
-                      }
-                      color="#cfae01"
+                      size={32}
+                      className="text-[#fde5ab]"
                       strokeWidth={1.5}
                     />
-                  </motion.div>
-
-                  {/* Badge de highlight */}
-                  <div className="inline-block mb-2 sm:mb-3 px-2 sm:px-3 py-0.5 sm:py-1 bg-[#cfae01]/10 border border-[#cfae01]/30 rounded-full">
-                    <span className="text-[#cfae01] text-[10px] sm:text-xs font-bold tracking-wide">
-                      {benefit.highlight}
-                    </span>
                   </div>
+                </div>
 
-                  {/* Título */}
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#ffe7b4] mb-2 sm:mb-3 group-hover:text-[#ffd98e] transition-colors">
+                {/* Contenido */}
+                <div className="flex-1 pt-1">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                     {benefit.title}
                   </h3>
-
-                  {/* Descripción */}
-                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors text-xs sm:text-sm">
+                  <p className="text-sm md:text-base text-gray-400 leading-relaxed">
                     {benefit.description}
                   </p>
-
-                  {/* Brillo en esquina */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: hoveredIndex === index ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#cfae01]"
-                    style={{
-                      boxShadow:
-                        "0 0 10px #cfae01, 0 0 20px #cfae01",
-                    }}
-                  />
-
-                  {/* Partícula brillante central */}
-                  <motion.div
-                    animate={{
-                      scale:
-                        hoveredIndex === index
-                          ? [0, 1.5, 0]
-                          : 0,
-                      opacity:
-                        hoveredIndex === index
-                          ? [0, 0.8, 0]
-                          : 0,
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat:
-                        hoveredIndex === index ? Infinity : 0,
-                      repeatDelay: 0.5,
-                    }}
-                    className="absolute top-1/2 left-1/2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#cfae01] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                  />
                 </div>
               </motion.div>
             );
@@ -251,22 +138,34 @@ export default function ValueSection() {
 
         {/* CTA Final */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="text-center mt-10 sm:mt-12 md:mt-16 px-4"
+          className="text-center mt-16 md:mt-20"
         >
-          <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base md:text-lg">
+          <p className="text-gray-400 mb-6 text-lg md:text-xl">
             ¿Listo para destacar online y atraer más clientes?
           </p>
           <motion.button
             onClick={handleRequestQuote}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#cfae01] to-[#e2c674] text-black font-bold text-sm sm:text-base rounded-full 
-                       transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(207,174,1,0.5)]"
+            className="group relative px-8 py-4 bg-transparent font-bold text-base rounded-full
+                       border-2 border-[#fde5ab] overflow-hidden
+                       transition-all duration-300 hover:border-[#bfa86a] hover:shadow-[0_0_30px_rgba(253,229,171,0.4)]"
           >
-            Solicitar Cotización Gratis
+            {/* Fondo con blur en hover */}
+            <span className="absolute inset-0 bg-[#fde5ab]/0 backdrop-blur-none group-hover:bg-[#fde5ab]/20 group-hover:backdrop-blur-sm transition-all duration-300" />
+
+            {/* Brillo dorado animado */}
+            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#fde5ab] to-transparent" />
+              <span className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#fde5ab] to-transparent" />
+            </span>
+
+            <span className="relative z-10 bg-gradient-to-r from-[#fde5ab] to-[#bfa86a] bg-clip-text text-transparent group-hover:from-white group-hover:to-white transition-all duration-300">
+              Solicitar Cotización Gratis
+            </span>
           </motion.button>
         </motion.div>
       </div>

@@ -7,10 +7,9 @@ export default function Header() {
 
   const navLinks = [
     { name: "Inicio", href: "#inicio" },
-    { name: "Por qué tener una web", href: "#why-website" },
-    { name: "Proceso", href: "#proceso" },
-    { name: "Planes", href: "#planes" },
+    { name: "Servicios", href: "#planes" },
     { name: "Proyectos", href: "#portfolio" },
+    { name: "Sobre mí", href: "#sobre-mi" },
     { name: "Contacto", href: "#contacto" },
   ];
 
@@ -27,9 +26,9 @@ export default function Header() {
         <div className="transition-all duration-300">
           <a href="#inicio" className="group relative">
             <img
-              src="/isotipo.png"
-              alt="Logo"
-              className="w-12 sm:w-14 drop-shadow-[0_0_2px_rgba(253,229,171,0.4)] group-hover:drop-shadow-[0_0_15px_rgba(253,229,171,0.7)] transition-all duration-300"
+              src="/logo.png"
+              alt="Logo Codegza"
+              className="h-10 sm:h-12 w-auto drop-shadow-[0_0_2px_rgba(253,229,171,0.4)] group-hover:drop-shadow-[0_0_15px_rgba(253,229,171,0.7)] transition-all duration-300"
             />
           </a>
         </div>

@@ -3,10 +3,10 @@ import Hero from "@/components/hero";
 import WhyWebsiteSection from "@/components/whyWebSite";
 import ValueSection from "@/components/valueSection";
 import ProcessSection from "@/components/processSection";
-import TrustBuildingSection from "@/components/trustBuildingSection";
 import PricingSection from "@/components/pricingSection";
 import ContactSection from "@/components/contactSection";
 import Footer from "@/components/footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // Nuevas secciones
 import Technologies from "@/components/sections/Technologies";
@@ -30,11 +30,11 @@ export default function Home() {
       <ProcessSection />
       <Portfolio />
       <About />
-      <TrustBuildingSection />
       <PricingSection />
       <FAQ />
       <ContactSection />
       <Footer />
+      <ScrollToTop />
     </main>
   );
 }

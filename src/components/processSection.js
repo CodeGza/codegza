@@ -32,7 +32,7 @@ export default function ProcessSection() {
         "Evaluación del tipo de sitio ideal",
         "Orientación y asesoramiento inicial",
       ],
-      color: "#cfae01",
+      color: "#fde5ab",
     },
     {
       number: "02",
@@ -46,7 +46,7 @@ export default function ProcessSection() {
         "Condiciones transparentes",
         "Revisión y aprobación",
       ],
-      color: "#e2c674",
+      color: "#bfa86a",
     },
     {
       number: "03",
@@ -60,7 +60,7 @@ export default function ProcessSection() {
         "Adaptación a móviles y tablets",
         "Feedback y revisiones intermedias",
       ],
-      color: "#cfae01",
+      color: "#fde5ab",
     },
     {
       number: "04",
@@ -74,7 +74,7 @@ export default function ProcessSection() {
         "Entrega de accesos y guía de uso",
         "Opción de mantenimiento mensual",
       ],
-      color: "#e2c674",
+      color: "#bfa86a",
     },
   ];
 
@@ -99,7 +99,7 @@ export default function ProcessSection() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `repeating-linear-gradient(45deg, #cfae01 0px, #cfae01 2px, transparent 2px, transparent 20px)`,
+            backgroundImage: `repeating-linear-gradient(45deg, #fde5ab 0px, #fde5ab 2px, transparent 2px, transparent 20px)`,
           }}
         />
       </div>
@@ -116,16 +116,16 @@ export default function ProcessSection() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#cfae01]/10 border border-[#cfae01]/30 rounded-full"
+            className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#fde5ab]/10 border border-[#fde5ab]/30 rounded-full"
           >
-            <span className="text-[#cfae01] font-semibold text-xs sm:text-sm tracking-wide">
+            <span className="text-[#fde5ab] font-semibold text-xs sm:text-sm tracking-wide">
               NUESTRO PROCESO
             </span>
           </motion.div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6 px-4">
             <span className="text-white">Cómo Trabajamos </span>
-            <span className="text-[#e2c674]">Contigo</span>
+            <span className="text-[#bfa86a]">Contigo</span>
           </h2>
 
           <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto px-4">
@@ -140,7 +140,7 @@ export default function ProcessSection() {
             initial={{ height: 0 }}
             animate={inView ? { height: "100%" } : {}}
             transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-            className="absolute left-1/2 top-0 w-0.5 bg-gradient-to-b from-[#cfae01] via-[#e2c674] to-[#cfae01] hidden lg:block"
+            className="absolute left-1/2 top-0 w-0.5 bg-gradient-to-b from-[#fde5ab] via-[#bfa86a] to-[#fde5ab] hidden lg:block"
             style={{ transform: "translateX(-50%)" }}
           />
 
@@ -164,6 +164,18 @@ export default function ProcessSection() {
                     isLeft ? "lg:flex-row" : "lg:flex-row-reverse"
                   } flex-col lg:gap-12`}
                 >
+                  {/* Número en la línea central - solo desktop */}
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={inView ? { scale: 1, opacity: 1 } : {}}
+                    transition={{ delay: 0.5 + index * 0.2, duration: 0.4 }}
+                    className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-[#fde5ab] items-center justify-center z-10 shadow-[0_0_15px_rgba(253,229,171,0.4)]"
+                  >
+                    <span className="text-lg font-bold text-[#fde5ab]">
+                      {step.number}
+                    </span>
+                  </motion.div>
+
                   <div
                     className={`w-full lg:w-[calc(50%-3rem)] ${
                       isLeft ? "lg:text-right" : "lg:text-left"
@@ -172,6 +184,7 @@ export default function ProcessSection() {
                     <motion.div
                       onMouseEnter={() => setActiveStep(index)}
                       onMouseLeave={() => setActiveStep(null)}
+                      onClick={() => setActiveStep(activeStep === index ? null : index)}
                       className="relative group"
                     >
                       <div
@@ -242,7 +255,7 @@ export default function ProcessSection() {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <div className="space-y-1.5 sm:space-y-2 pt-3 sm:pt-4 border-t border-[#cfae01]/20">
+                          <div className="space-y-1.5 sm:space-y-2 pt-3 sm:pt-4 border-t border-[#fde5ab]/20">
                             {step.details.map((detail, i) => (
                               <div key={i} className="flex items-start gap-2">
                                 <div
@@ -279,7 +292,7 @@ export default function ProcessSection() {
             onClick={handleStartProject}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#cfae01] to-[#e2c674] text-black text-sm sm:text-base font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(207,174,1,0.5)]"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#fde5ab] to-[#bfa86a] text-black text-sm sm:text-base font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(253,229,171,0.5)]"
           >
             Hablemos de Tu Proyecto
           </motion.button>

@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es" className="scroll-smooth overflow-x-hidden">
       <body
         className="scroll-smooth min-h-screen text-white bg-[#0a0a0a] overflow-x-hidden overflow-y-auto"
       >

@@ -39,7 +39,7 @@ export default function About() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4AF37]/6 rounded-full blur-[120px]" />
         {/* Luces laterales sutiles */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-0 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto relative flex flex-col justify-center min-h-screen">

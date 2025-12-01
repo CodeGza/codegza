@@ -14,7 +14,9 @@
       "Bash(git clean:*)",
       "Bash(if exist \"C:\\Users\\EQUIPO\\Documents\\Proyectos\\CodeGZA\\codegza\\.next\" rmdir /s /q \"C:\\Users\\EQUIPO\\Documents\\Proyectos\\CodeGZA\\codegza\\.next\")",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git restore:*)",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

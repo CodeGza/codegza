@@ -91,7 +91,7 @@ export default function PricingSection() {
 
   const handleSpecialPriceClick = () => {
     const message =
-      "¡Hola Codegza! %0A%0AQuiero consultar por el *PRECIO DE LANZAMIENTO EXCLUSIVO* que vi en la web.%0A%0AEstoy entre los primeros 10 clientes y me gustaría conocer:%0A• Los precios especiales disponibles%0A• Qué planes están en oferta%0A• Hasta cuándo dura la promoción%0A%0A¡No quiero perder esta oportunidad!";
+      "¡Hola Codegza! %0A%0AQuiero aprovechar la *OFERTA DE LANZAMIENTO* del 15% OFF que vi en la web.%0A%0AEstoy entre los próximos 4 clientes y me gustaría conocer:%0A• Qué planes están en oferta%0A• Los precios con el descuento aplicado%0A• Cómo puedo reservar mi lugar%0A%0A¡No quiero perder esta oportunidad!";
     const whatsappUrl = `https://wa.me/59895436987?text=${message}`;
     if (typeof window !== "undefined") {
       window.open(whatsappUrl, "_blank");
@@ -102,7 +102,7 @@ export default function PricingSection() {
     <section
       id="planes"
       ref={ref}
-      className="relative min-w-[100vw] bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#1a1208] text-white overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
+      className="relative min-w-[100vw] bg-gradient-to-b from-[#1a1208] via-[#0f0f0f] to-[#0a0a0a] text-white overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32"
     >
       {/* Fondo decorativo */}
       <div className="absolute inset-0 opacity-5">
@@ -129,17 +129,6 @@ export default function PricingSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={inView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#cfae01]/10 border border-[#cfae01]/30 rounded-full"
-          >
-            <span className="text-[#cfae01] font-semibold text-xs sm:text-sm tracking-wide">
-              PLANES Y SERVICIOS
-            </span>
-          </motion.div>
-
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6 px-4">
             <span className="text-white">Elegí el Plan </span>
             <span className="text-[#e2c674]">Ideal para Vos</span>
@@ -148,6 +137,42 @@ export default function PricingSection() {
           <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-3xl mx-auto px-4">
             Cada negocio es diferente. En Codegza desarrollamos sitios web adaptados a tus objetivos, con precios claros y resultados reales.
           </p>
+        </motion.div>
+
+        {/* Banner especial - Precio de lanzamiento */}
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1 } : {}}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="max-w-4xl mx-auto px-4 mb-10 sm:mb-12 md:mb-14"
+        >
+          <div className="relative overflow-hidden rounded-xl p-4 sm:p-6 bg-gradient-to-r from-[#1a1510]/50 via-[#2a2010]/50 to-[#1a1510]/50 backdrop-blur-sm border border-[#cfae01]/40 text-center">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              {/* Left side - Info */}
+              <div className="flex-1 text-center sm:text-left">
+                <p className="text-[#cfae01] font-semibold text-sm sm:text-base mb-1">
+                  Oferta de Lanzamiento
+                </p>
+                <p className="text-white text-base sm:text-lg font-bold mb-1">
+                  15% OFF en tu nueva página web
+                </p>
+                <p className="text-gray-400 text-xs sm:text-sm">
+                  Solo para los próximos 4 clientes
+                </p>
+              </div>
+
+              {/* Right side - CTA */}
+              <motion.button
+                onClick={handleSpecialPriceClick}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-6 py-2.5 bg-gradient-to-r from-[#cfae01] to-[#e2c674] text-black font-semibold text-sm rounded-full transition-all duration-300 shadow-lg flex items-center gap-2 group"
+              >
+                Aprovechar oferta
+                <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </motion.button>
+            </div>
+          </div>
         </motion.div>
 
         {/* Grid de planes */}
@@ -277,67 +302,75 @@ export default function PricingSection() {
           })}
         </div>
 
-        {/* Banner especial - MEJORADO PARA RESPONSIVE */}
+        {/* Plan de Mantenimiento Anual */}
         <motion.div
-          initial={{ y: 50, opacity: 0, scale: 0.95 }}
-          animate={inView ? { y: 0, opacity: 1, scale: 1 } : {}}
+          initial={{ y: 50, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="max-w-4xl mx-auto px-4"
+          className="max-w-5xl mx-auto px-4"
         >
-          <div className="relative overflow-hidden rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-[#1a1510] via-[#2a2010] to-[#1a1510] border-2 border-[#cfae01] text-center">
-            <motion.h3 
-              animate={{ 
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="text-xl sm:text-2xl md:text-3xl font-bold text-[#cfae01] mb-3 sm:mb-4 px-2 leading-tight"
-            >
-              Precio de Lanzamiento Exclusivo
-            </motion.h3>
-            <p className="text-sm sm:text-base md:text-lg text-white mb-6 sm:mb-8 px-2 leading-relaxed">
-              Para los <span className="text-[#cfae01] font-bold">primeros 10 clientes</span> de Codegza.{" "}
-              <br className="hidden sm:inline" />
-              <span className="text-[#e2c674] font-semibold">
-                ¡Consultá antes de que suban los precios!
-              </span>
-            </p>
-            <motion.button
-              onClick={handleSpecialPriceClick}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 bg-gradient-to-r from-[#cfae01] to-[#e2c674] text-black font-bold text-sm sm:text-base md:text-lg rounded-full shadow-[0_0_30px_rgba(207,174,1,0.5)] transition-all duration-300"
-            >
-              Solicitar Precio Especial
-            </motion.button>
+          <div className="relative overflow-hidden rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a] border border-[#cfae01]/30">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center">
+              {/* Left side - Info */}
+              <div className="flex-1 text-center lg:text-left">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#e2c674] mb-3">
+                  Mantenimiento y Hosting Anual
+                </h3>
+                <p className="text-sm sm:text-base text-gray-400 mb-4">
+                  Mantené tu sitio web actualizado, seguro y online sin preocupaciones durante todo el año.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+                  <div className="flex items-start gap-2">
+                    <Check size={18} color="#cfae01" strokeWidth={3} />
+                    <span className="text-xs sm:text-sm text-gray-300">Hosting premium incluido</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check size={18} color="#cfae01" strokeWidth={3} />
+                    <span className="text-xs sm:text-sm text-gray-300">Renovación de dominio</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check size={18} color="#cfae01" strokeWidth={3} />
+                    <span className="text-xs sm:text-sm text-gray-300">Certificado SSL renovado</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check size={18} color="#cfae01" strokeWidth={3} />
+                    <span className="text-xs sm:text-sm text-gray-300">Actualizaciones de seguridad</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check size={18} color="#cfae01" strokeWidth={3} />
+                    <span className="text-xs sm:text-sm text-gray-300">Soporte técnico prioritario</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check size={18} color="#cfae01" strokeWidth={3} />
+                    <span className="text-xs sm:text-sm text-gray-300">Cambios menores de contenido</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right side - CTA */}
+              <div className="flex-shrink-0 text-center lg:text-right">
+                <p className="text-xs sm:text-sm text-gray-500 mb-2">Todo incluido</p>
+                <p className="text-3xl sm:text-4xl font-bold text-[#cfae01] mb-1">USD 150</p>
+                <p className="text-xs sm:text-sm text-gray-500 mb-4">por año</p>
+                <motion.button
+                  onClick={() => {
+                    const message = "¡Hola Codegza! %0A%0AMe interesa conocer más sobre el *Plan de Mantenimiento y Hosting Anual* de USD 150/año.%0A%0A¿Podrían darme más detalles sobre:%0A• Qué incluye exactamente%0A• Cómo funciona el servicio%0A• Formas de pago%0A%0A¡Gracias!";
+                    const whatsappUrl = `https://wa.me/59895436987?text=${message}`;
+                    if (typeof window !== "undefined") {
+                      window.open(whatsappUrl, "_blank");
+                    }
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-[#cfae01] to-[#e2c674] text-black font-bold text-sm sm:text-base rounded-full transition-all duration-300 shadow-lg"
+                >
+                  Más información
+                </motion.button>
+              </div>
+            </div>
           </div>
         </motion.div>
 
-        {/* Garantía */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="text-center mt-8 sm:mt-12"
-        >
-          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-[#0a0a0a] border border-[#cfae01]/30 rounded-lg sm:rounded-xl">
-            <Check
-              size={windowWidth < 640 ? 20 : 28}
-              color="#cfae01"
-              strokeWidth={2.5}
-            />
-            <p className="text-gray-400 text-xs sm:text-sm md:text-base">
-              Todos los planes incluyen{" "}
-              <span className="text-white font-semibold">revisiones</span> y{" "}
-              <span className="text-white font-semibold">
-                garantía de satisfacción
-              </span>
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
