@@ -69,6 +69,34 @@ const projects = [
 // Lightbox component
 function Lightbox({ images, initialIndex, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Swipe detection
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextImage();
+    }
+    if (isRightSwipe) {
+      prevImage();
+    }
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -121,12 +149,18 @@ function Lightbox({ images, initialIndex, onClose }) {
       </button>
 
       {/* Image */}
-      <div className="relative w-[90vw] h-[90vh]" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="relative w-[90vw] h-[90vh] touch-pan-x"
+        onClick={(e) => e.stopPropagation()}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         <Image
           src={images[currentIndex]}
           alt={`Imagen ${currentIndex + 1}`}
           fill
-          className="object-contain"
+          className="object-contain pointer-events-none"
           sizes="90vw"
         />
       </div>
@@ -245,20 +279,20 @@ function ProjectCard({ project }) {
                   </>
                 ) : (
                   <>
-                    <div className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                      <FileText className="w-5 h-5 mx-auto text-[#fde5ab] mb-2" />
-                      <div className="text-xl font-bold text-white">{project.stats.pages}</div>
-                      <div className="text-xs text-gray-500">Páginas</div>
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                      <FileText className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
+                      <div className="text-base sm:text-xl font-bold text-white">{project.stats.pages}</div>
+                      <div className="text-[10px] sm:text-xs text-gray-500">Páginas</div>
                     </div>
-                    <div className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                      <Code className="w-5 h-5 mx-auto text-[#fde5ab] mb-2" />
-                      <div className="text-xl font-bold text-white">{project.stats.lines}</div>
-                      <div className="text-xs text-gray-500">Líneas</div>
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                      <Code className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
+                      <div className="text-base sm:text-xl font-bold text-white break-words">{project.stats.lines}</div>
+                      <div className="text-[10px] sm:text-xs text-gray-500">Líneas</div>
                     </div>
-                    <div className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                      <Clock className="w-5 h-5 mx-auto text-[#fde5ab] mb-2" />
-                      <div className="text-xl font-bold text-white">{project.stats.hours}</div>
-                      <div className="text-xs text-gray-500">Desarrollo</div>
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
+                      <div className="text-base sm:text-xl font-bold text-white break-words">{project.stats.hours}</div>
+                      <div className="text-[10px] sm:text-xs text-gray-500">Desarrollo</div>
                     </div>
                   </>
                 )}

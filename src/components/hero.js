@@ -163,17 +163,17 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
-              className="grid grid-cols-3 gap-4 pt-4 sm:pt-6 border-t border-white/10"
+              className="grid grid-cols-3 gap-4 pt-4 sm:pt-6 border-t border-white/10 justify-items-center sm:justify-items-start"
             >
-              <div>
+              <div className="text-center sm:text-left">
                 <div className="text-xl sm:text-2xl font-bold text-white">100%</div>
                 <div className="text-xs sm:text-sm text-gray-500 mt-0.5">Responsive</div>
               </div>
-              <div>
+              <div className="text-center sm:text-left">
                 <div className="text-xl sm:text-2xl font-bold text-white">7-35</div>
                 <div className="text-xs sm:text-sm text-gray-500 mt-0.5">Días entrega</div>
               </div>
-              <div>
+              <div className="text-center sm:text-left">
                 <div className="text-xl sm:text-2xl font-bold text-white">SEO</div>
                 <div className="text-xs sm:text-sm text-gray-500 mt-0.5">Incluido</div>
               </div>
