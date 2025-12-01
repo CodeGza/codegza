@@ -24,7 +24,7 @@ export const FAQ_ITEMS = [
   {
     id: 'faq-3',
     question: '¿Ofrecés soporte después del lanzamiento?',
-    answer: 'Sí, ofrezco un Plan de Mantenimiento y Hosting Anual por USD 150 que incluye hosting premium, renovación de dominio, certificado SSL, actualizaciones de seguridad, backups automáticos, y soporte técnico durante todo el año.'
+    answer: 'Sí, ofrezco un Plan de Mantenimiento y Hosting Anual por USD 150 que incluye hosting premium, renovación de dominio, certificado SSL, actualizaciones de seguridad, y soporte técnico durante todo el año.'
   },
   {
     id: 'faq-4',
@@ -39,7 +39,7 @@ export const FAQ_ITEMS = [
   {
     id: 'faq-6',
     question: '¿Necesito contratar hosting y dominio aparte?',
-    answer: 'El hosting está incluido de forma gratuita en Vercel para sitios web normales (soporta tráfico ilimitado en la mayoría de casos). El dominio no está incluido en el precio inicial, pero sí en el Plan de Mantenimiento Anual. Si preferís tener tu propio dominio desde el inicio, podés comprarlo por unos USD 10-15 al año.'
+    answer: 'No. El hosting está incluido de forma gratuita en Vercel (soporta tráfico ilimitado en la mayoría de casos), y el dominio también está incluido en el precio inicial del sitio. Con el Plan de Mantenimiento Anual la renovación del dominio está cubierta cada año.'
   },
   {
     id: 'faq-7',

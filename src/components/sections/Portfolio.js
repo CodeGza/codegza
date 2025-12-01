@@ -278,17 +278,17 @@ function ProjectCard({ project }) {
                   </>
                 ) : (
                   <>
-                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5 flex flex-col justify-center items-center">
                       <FileText className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
                       <div className="text-base sm:text-xl font-bold text-white">{project.stats.pages}</div>
                       <div className="text-[10px] sm:text-xs text-gray-500">Páginas</div>
                     </div>
-                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5 flex flex-col justify-center items-center">
                       <Code className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
                       <div className="text-base sm:text-xl font-bold text-white break-words">{project.stats.lines}</div>
                       <div className="text-[10px] sm:text-xs text-gray-500">Líneas</div>
                     </div>
-                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <div className="text-center p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5 flex flex-col justify-center items-center">
                       <Clock className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-[#fde5ab] mb-1 sm:mb-2" />
                       <div className="text-base sm:text-xl font-bold text-white break-words">{project.stats.hours}</div>
                       <div className="text-[10px] sm:text-xs text-gray-500">Desarrollo</div>
